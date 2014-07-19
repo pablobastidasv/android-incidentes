@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bsiprosoft.incidencia.myapplication5.app" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Hello "
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.bsiprosoft.incidencia.myapplication5.app.MainActivity"
+            android:label="Nombre en construccion :P" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.bsiprosoft.incidencia.myapplication5.app.CrearInc"
+           android:label="Crear Incidencia" />
+        <activity android:name="com.bsiprosoft.incidencia.myapplication5.app.ConsultarInc"
+            android:label="Consultar Incidencia" />
+
+    </application>
+
+</manifest>

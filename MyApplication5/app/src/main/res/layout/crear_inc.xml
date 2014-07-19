@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.bsiprosoft.incidencia.myapplication5.app.CrearInc">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Número de documento :"
+                android:textSize="45px"
+                />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite su número de documento"
+                android:inputType="number"
+                android:paddingTop="10px"/>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="45px"
+                android:text="Descripción :"
+                android:paddingTop="20px"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="93dp"
+                android:hint="Digite la descripción de la incidencia"
+                android:editable="true"
+                android:inputType="text"
+                android:maxLength="10"
+               android:imeActionLabel="launch"
+                 />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:layout_gravity="right" />
+
+        </LinearLayout>
+
+
+       <LinearLayout
+
+
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:paddingTop="100px">
+
+
+           <Button
+               android:text="Crear"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="left"
+               android:onClick="onClickCrearIncidencia"/>
+
+
+
+           <Button
+               android:text="Cancelar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="left"
+               android:onClick="onClickVolverMain"/>
+
+           </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+</RelativeLayout>
