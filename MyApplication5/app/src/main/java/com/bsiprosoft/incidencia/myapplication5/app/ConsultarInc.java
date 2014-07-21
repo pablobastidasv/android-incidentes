@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.bsiprosoft.incidencia.myapplication5.app.asynctask.ConsultarAsyncTask;
 
 /**
  * Created by mikillo on 09/07/2014.
@@ -29,20 +33,18 @@ public class ConsultarInc  extends ActionBarActivity{
         this.startActivity(i);
     }
 
-    public void onClickConsultarIncidencia (){
-        /*try{
-		EditText txtLogin = (EditText) this.findViewById(R.id.txtLogin);
 
-		EditText txtPassword = (EditText) this.findViewById(R.id.txtPassword);
+    public void onClickConsultarIncidencia (View view){
+        try{
+		EditText txtNumIncidencia = (EditText) this.findViewById(R.id.txtNumIncidencia);
 
-		new AutenticateAsyncTask(this).execute("http://10.0.2.2:8888/_ah/api/usuariovoendpoint/v1/auth",
-												txtLogin.getText().toString(),
-												txtPassword.getText().toString());
+		new ConsultarAsyncTask(this).execute("http://apps.bsiprosoft.com:7004/incidencias/consultar",
+                txtNumIncidencia.getText().toString());
 		}
 		catch(Exception ex)
 		{
 			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-		}*/
+		}
 
     }
 

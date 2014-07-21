@@ -25,11 +25,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Número de Incidencia :"
+                style="@style/Label"
                 />
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Digite el número de su incidencia"/>
+                android:hint="Digite el número de su incidencia"
+                android:id="@+id/txtNumIncidencia"/>
 
 
             </LinearLayout>
@@ -45,7 +47,9 @@
             android:layout_height="wrap_content"
             android:text="Cancelar"
             android:layout_gravity="center"
-            android:onClick="onClickVolverMain"/>
+            android:onClick="onClickVolverMain"
+
+            />
 
         </LinearLayout>
 

@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class RequestManagerHelper {
 
-    //esta funci�n me permite realizar una petici�n POST desde mi aplicaci�n, y enviarle una lista de parametros
+
     public static String startPostRequest(String url, BasicNameValuePair... params)
     {
         // Create a new HttpClient and Post Header
@@ -51,7 +51,7 @@ public class RequestManagerHelper {
 
     }
 
-    //esta funci�n me permite realizar una petici�n GET desde mi aplicaci�n, y enviarle una lista de parametros (por la url)
+
     public static String startGetRequest(String url)
     {
         HttpClient httpClient = new DefaultHttpClient();
@@ -71,7 +71,7 @@ public class RequestManagerHelper {
         return text;
 
     }
-    //esta funci�n convierte la trama de bytes, enviada como respuesta desde el servidor en una cadena, para su procesamiento.
+
     private static  String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
         InputStream in = entity.getContent();
         StringBuffer out = new StringBuffer();

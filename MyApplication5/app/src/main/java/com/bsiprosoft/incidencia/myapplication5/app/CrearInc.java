@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.bsiprosoft.incidencia.myapplication5.app.asynctask.CrearAsyncTask;
 
 /**
- * Created by mikillo on 09/07/2014.
+ * Created by Mitzy Valencia on 09/07/2014.
  */
 public class CrearInc extends ActionBarActivity {
 
@@ -29,8 +33,25 @@ public class CrearInc extends ActionBarActivity {
         this.startActivity(i);
     }
 
-    public void onClickCrearIncidencia (){
+    public void onClickCrearIncidencia (View view){
 
+        try{
+		EditText txtIdCliente = (EditText) this.findViewById(R.id.txtIdCliente);
+
+		EditText txtDescripcion = (EditText) this.findViewById(R.id.txtDescripcion);
+
+		new CrearAsyncTask(this).execute("http://apps.bsiprosoft.com:7004/incidencias/crear",
+                txtIdCliente.getText().toString(),
+                txtDescripcion.getText().toString());
+		}
+		catch(Exception ex)
+		{
+			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+		}
+        //Intent i = new Intent(this, CrearInc.class);
+        //EditText txtIdCliente  = (EditText) this.findViewById(R.id.txtIdCliente);
+        //i.putExtra("user",txtIdCliente.getText().toString());
+        //this.startActivity(i);
     }
 
 }

@@ -24,10 +24,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Número de documento :"
-                android:textSize="45px"
+                style="@style/Label"
                 />
 
             <EditText
+                android:id="@+id/txtIdCliente"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Digite su número de documento"
@@ -38,10 +39,11 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="45px"
                 android:text="Descripción :"
-                android:paddingTop="20px"/>
+                android:paddingTop="20px"
+                style="@style/Label"/>
             <EditText
+                android:id="@+id/txtDescripcion"
                 android:layout_width="wrap_content"
                 android:layout_height="93dp"
                 android:hint="Digite la descripción de la incidencia"
