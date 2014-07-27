@@ -24,6 +24,10 @@
            android:label="Crear Incidencia" />
         <activity android:name="com.bsiprosoft.incidencia.myapplication5.app.ConsultarInc"
             android:label="Consultar Incidencia" />
+        <activity android:name="com.bsiprosoft.incidencia.myapplication5.app.InfoListSeg"
+            android:label="Seguimientos" />
+        <activity android:name="com.bsiprosoft.incidencia.myapplication5.app.InfoListInc"
+            android:label="Mi Incidencia" />
 
     </application>
 

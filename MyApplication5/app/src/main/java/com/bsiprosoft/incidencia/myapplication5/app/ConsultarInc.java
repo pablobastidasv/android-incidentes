@@ -6,12 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.asynctask.ConsultarAsyncTask;
 
 /**
- * Created by mikillo on 09/07/2014.
+ * Created by Mitzy Valencia
  */
 public class ConsultarInc  extends ActionBarActivity{
 
@@ -20,6 +21,7 @@ public class ConsultarInc  extends ActionBarActivity{
 
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.consultar_inc);
+
     }
 
     @Override
@@ -38,13 +40,18 @@ public class ConsultarInc  extends ActionBarActivity{
         try{
 		EditText txtNumIncidencia = (EditText) this.findViewById(R.id.txtNumIncidencia);
 
-		new ConsultarAsyncTask(this).execute("http://apps.bsiprosoft.com:7004/incidencias/consultar",
+		new ConsultarAsyncTask(this).execute("http://146.148.36.217:7004/incidencias/",
                 txtNumIncidencia.getText().toString());
 		}
 		catch(Exception ex)
 		{
 			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
 		}
+
+        Intent i = new Intent(this, InfoListInc.class);
+        TextView txtNumInc = (TextView) this.findViewById(R.id.txtNumIncConsul);
+        i.putExtra("Número de Incidencia: ",txtNumInc.getText().toString());
+        this.startActivity(i);
 
     }
 

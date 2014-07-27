@@ -6,14 +6,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.bsiprosoft.incidencia.myapplication5.app.CrearInc">
+    tools:context="com.bsiprosoft.incidencia.myapplication5.app.CrearInc"
+    android:background="#fff5f5f7">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
-
-
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -35,38 +34,27 @@
                 android:inputType="number"
                 android:paddingTop="10px"/>
 
-
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Descripción :"
                 android:paddingTop="20px"
                 style="@style/Label"/>
-            <EditText
-                android:id="@+id/txtDescripcion"
-                android:layout_width="wrap_content"
-                android:layout_height="93dp"
-                android:hint="Digite la descripción de la incidencia"
-                android:editable="true"
-                android:inputType="text"
-                android:maxLength="10"
-               android:imeActionLabel="launch"
-                 />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="66dp"
+                android:layout_height="match_parent"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText"
-                android:layout_gravity="right" />
+                android:id="@+id/txtDescripcion"
+                android:layout_gravity="right"
+                android:maxLength="300"
+                />
 
         </LinearLayout>
 
 
        <LinearLayout
-
-
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal"
@@ -75,19 +63,12 @@
 
            <Button
                android:text="Crear"
-               android:layout_width="wrap_content"
+               android:layout_width="fill_parent"
                android:layout_height="wrap_content"
-               android:layout_gravity="left"
+               style="@style/ButtonStyle"
                android:onClick="onClickCrearIncidencia"/>
 
 
-
-           <Button
-               android:text="Cancelar"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="left"
-               android:onClick="onClickVolverMain"/>
 
            </LinearLayout>
 

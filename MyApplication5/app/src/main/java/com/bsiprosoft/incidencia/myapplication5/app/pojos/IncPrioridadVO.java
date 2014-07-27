@@ -5,7 +5,7 @@ import java.math.BigInteger;
 /**
  * Created by Mitzy Valencia on 16/07/2014.
  */
-public class IncPrioridad {
+public class IncPrioridadVO {
 
     private BigInteger prioridadId;
     private String nombre;

@@ -33,6 +33,7 @@ public class CrearInc extends ActionBarActivity {
         this.startActivity(i);
     }
 
+    // metodo para la creacion de una nueva incidencia externa
     public void onClickCrearIncidencia (View view){
 
         try{
@@ -40,7 +41,7 @@ public class CrearInc extends ActionBarActivity {
 
 		EditText txtDescripcion = (EditText) this.findViewById(R.id.txtDescripcion);
 
-		new CrearAsyncTask(this).execute("http://apps.bsiprosoft.com:7004/incidencias/crear",
+		new CrearAsyncTask(this).execute("http://rest.bsiprosoft.com:7004/incidencias/crear/",
                 txtIdCliente.getText().toString(),
                 txtDescripcion.getText().toString());
 		}
@@ -48,10 +49,11 @@ public class CrearInc extends ActionBarActivity {
 		{
 			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-        //Intent i = new Intent(this, CrearInc.class);
-        //EditText txtIdCliente  = (EditText) this.findViewById(R.id.txtIdCliente);
-        //i.putExtra("user",txtIdCliente.getText().toString());
-        //this.startActivity(i);
+        Intent i = new Intent(this, MainActivity.class);
+        this.startActivity(i);
+        //
     }
+
+
 
 }

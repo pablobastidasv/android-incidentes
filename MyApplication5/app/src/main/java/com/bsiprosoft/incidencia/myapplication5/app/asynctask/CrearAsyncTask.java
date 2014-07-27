@@ -29,7 +29,7 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("si paso por aqui ");
         progressDialog.setCancelable(false);
-        progressDialog.setMax(100);
+        progressDialog.setMax(200);
     }
 
     @Override
