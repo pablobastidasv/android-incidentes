@@ -55,12 +55,7 @@
             >
         </ListView>
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver Seguimientos"
-            android:id="@+id/btnSeguimiento"
-            />
+
 
 
 

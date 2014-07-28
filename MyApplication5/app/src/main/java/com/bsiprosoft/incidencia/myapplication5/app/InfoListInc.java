@@ -23,15 +23,13 @@ public class InfoListInc extends Activity implements AdapterView.OnItemClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*this.setContentView(R.layout.infolist_inc);
-        adptInc  = new IncidenciaAdapter(new ArrayList<IncidenciaVO>(), this);
+        this.setContentView(R.layout.infolist_inc);
+        /*adptInc  = new IncidenciaAdapter(new ArrayList<IncidenciaVO>(), this);
         ListView lView = (ListView) findViewById(R.id.listInfoInc);
         lView.setAdapter(adptInc);
         lView.setOnItemClickListener(this);
-        new ConsultarAsyncTask(this, adptInc).execute("http://146.148.36.217:7004/incidencias/" );
-
-    */
-        this.setContentView(R.layout.infolist_inc);
+        new ConsultarAsyncTask(this, adptInc).execute("http://rest.bsiprosoft.com:7004/incidencias/" );
+        this.setContentView(R.layout.infolist_inc);*/
 
     }
 

@@ -4,18 +4,30 @@ import java.math.BigInteger;
 import java.util.Date;
 
 /**
- * Created by Mitzy Valencia on 14/07/2014.
+ * Created by Mitzy Valencia
  */
 public class IncidenciaVO {
 
     private BigInteger incidenteId;
-    private Date fechaIni;
-    private Date fechaFin;
+    private String fechaIni;
+    private String fechaFin;
     private String descripcion;
-    private BigInteger responsable;
-    private BigInteger cliente;
-    private BigInteger estado;
-    private BigInteger empresaId;
+    //private BigInteger responsable;
+    private String responsable;
+    private String cliente;
+    private String estado;
+    private String numIncidencia;
+    private String empresaId;
+    private String categoria;
+    private String prioridad;
+
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
 
     public BigInteger getIncidenteId() {
         return incidenteId;
@@ -25,19 +37,19 @@ public class IncidenciaVO {
         this.incidenteId = incidenteId;
     }
 
-    public Date getFechaIni() {
+    public String getFechaIni() {
         return fechaIni;
     }
 
-    public void setFechaIni(Date fechaIni) {
+    public void setFechaIni(String fechaIni) {
         this.fechaIni = fechaIni;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -49,50 +61,55 @@ public class IncidenciaVO {
         this.descripcion = descripcion;
     }
 
-    public BigInteger getResponsable() {
+    public String getResponsable() {
         return responsable;
     }
 
-    public void setResponsable(BigInteger responsable) {
+    public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
 
-    public BigInteger getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
-    public void setCliente(BigInteger cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 
-    public BigInteger getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(BigInteger estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public BigInteger getEmpresaId() {
+    public String getEmpresaId() {
         return empresaId;
     }
 
-    public void setEmpresaId(BigInteger empresaId) {
+    public void setEmpresaId(String empresaId) {
         this.empresaId = empresaId;
     }
 
-    public IncidenciaVO(BigInteger incidenteId, Date fechaIni, Date fechaFin, String descripcion, BigInteger responsable,
-                        BigInteger cliente, BigInteger estado, BigInteger empresaId) {
-        super();
-        this.incidenteId = incidenteId;
-        this.fechaIni = fechaIni;
-        this.fechaFin = fechaFin;
-        this.descripcion = descripcion;
-        this.responsable = responsable;
-        this.cliente = cliente;
-        this.estado = estado;
-        this.empresaId = empresaId;
+    public String getNumIncidencia() {
+        return numIncidencia;
     }
+
+    public void setNumIncidencia(String numIncidencia) {
+        this.numIncidencia = numIncidencia;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+
 
     public IncidenciaVO() {
         super();

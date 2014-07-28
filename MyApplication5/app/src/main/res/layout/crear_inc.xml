@@ -49,9 +49,12 @@
                 android:id="@+id/txtDescripcion"
                 android:layout_gravity="right"
                 android:maxLength="300"
+                android:hint="Digite la descripción"
                 />
 
         </LinearLayout>
+
+
 
 
        <LinearLayout

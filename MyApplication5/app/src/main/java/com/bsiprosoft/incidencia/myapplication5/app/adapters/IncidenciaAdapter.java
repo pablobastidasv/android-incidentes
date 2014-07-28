@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bsiprosoft.incidencia.myapplication5.app.R;
@@ -14,11 +15,12 @@ import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
 import java.util.List;
 
 /**
- * Created by Mitzy Valencia on 14/07/2014.
+ * Created by Mitzy Valencia
  */
 public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO> {
 
     private List<IncidenciaVO> listItemsInc;
+    //private List<IncidenciaVO> responseInc;
     private Context ctx;
 
     public IncidenciaAdapter(Context context, int resource) {
@@ -31,11 +33,16 @@ public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO> {
         this.listItemsInc = infoInc;
         this.ctx = ctx;
     }
+
+
+
     public int getCount() {
         if (listItemsInc != null)
             return listItemsInc.size();
         return 0;
     }
+
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -47,8 +54,9 @@ public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO> {
         }
 
         IncidenciaVO u = listItemsInc.get(position);
-        //TextView text = (TextView) v.findViewById(R.id.lblNombre);
-        //text.setText(String.format("%s %s",u.getNombre(), u.getApellido()));
+        //
+        EditText text = (EditText) v.findViewById(R.id.txtNumIncConsul);
+        text.setText(String.format("%s %s",u.getNumIncidencia()));
         //TextView text1 = (TextView) v.findViewById(R.id.lblId);
         //text1.setText(u.getId());
         return v;
@@ -65,4 +73,14 @@ public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO> {
     public void setListItemsInc(List<IncidenciaVO> listItemsInc) {
         this.listItemsInc = listItemsInc;
     }
+
+    // lista que trae el numero de la incidencia creada
+
+    /*public List<IncidenciaVO> getResponseInc() {
+        return responseInc;
+    }
+
+    public void setResponseInc(List<IncidenciaVO> responseInc) {
+        this.responseInc = responseInc;
+    }*/
 }

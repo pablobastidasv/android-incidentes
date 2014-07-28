@@ -3,11 +3,16 @@ package com.bsiprosoft.incidencia.myapplication5.app.asynctask;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.JsonReader;
 import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.SeguimientoAdapter;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncCategoriaVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncEstadoVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncPrioridadVO;
 import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.UsuarioVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +32,8 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
     private SeguimientoAdapter adptSeg;
     private WeakReference<Activity> context;
     private ProgressDialog progressDialog;
+
+
 
     public ConsultarAsyncTask(Activity ctx , IncidenciaAdapter adptInc)
     {
@@ -48,7 +55,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
         this.context = new WeakReference<Activity>(ctx);
         progressDialog = new ProgressDialog(context.get());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("si paso por aqui pa consultar ");
+        progressDialog.setMessage("Consultando ... ");
         progressDialog.setCancelable(false);
         progressDialog.setMax(100);
     }
@@ -70,22 +77,30 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
             String  responseText = "";
             try {
 
-                Toast.makeText(context.get(), new JSONObject(s).getString("response"), Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(context.get(), new JSONObject(s).getString("response"), Toast.LENGTH_SHORT).show();
                 JSONArray jsonArray = new JSONArray(new JSONObject(s).getString("response"));
                 ArrayList<IncidenciaVO> infolist = new ArrayList<IncidenciaVO>();
                 for(int i =0; i < jsonArray.length(); i++)
                 {
                     JSONObject jsonObject= (JSONObject) jsonArray.get(i);
-                    IncidenciaVO p = new IncidenciaVO();
-                    //p.setId(jsonObject.getString("id"));
-                    //p.setNombre(jsonObject.getString("nombre"));
-                    //p.setApellido(jsonObject.getString("apellido"));
-                    infolist.add(p);
+                    IncidenciaVO inc = new IncidenciaVO();
+                    inc.setCategoria(jsonObject.getString("nombreCategoria"));
+                    inc.setCliente(jsonObject.getString("usuarioReportaSinLogin"));
+                    inc.setEstado(jsonObject.getString("estadoNombre"));
+                    inc.setDescripcion(jsonObject.getString("descripcion"));
+                    inc.setPrioridad(jsonObject.getString("nombrePrioridad"));
+                    inc.setResponsable(jsonObject.getString("nombrePrioridad"));
+                    inc.setFechaIni(jsonObject.getString("nombrePrioridad"));
+
+
+                    infolist.add(inc);
 
                 }
 
-                // adptInc.setListItems(userslist);
-                //adpt.notifyDataSetChanged();
+                 adptInc.setListItemsInc(infolist);
+                 adptInc.notifyDataSetChanged();
+
 
             }
             catch (JSONException e) {
@@ -102,6 +117,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
 
     }
+
 
     @Override
     protected String doInBackground(String... params) {
