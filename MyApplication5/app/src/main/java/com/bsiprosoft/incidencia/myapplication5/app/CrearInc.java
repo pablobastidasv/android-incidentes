@@ -48,13 +48,8 @@ public class CrearInc extends ActionBarActivity {
                 txtIdCliente.getText().toString(),
                 txtDescripcion.getText().toString());
 
-            Intent i = new Intent(this, CrearInc.class);
-            this.startActivity(i);
-
-
-           // new CrearAsyncTask(this).execute("http://146.148.36.217:7004/incidencias/crear");
-
-
+            /*Intent i = new Intent(this, CrearInc.class);
+            this.startActivity(i);*/
 		}
 		catch(Exception ex)
 		{

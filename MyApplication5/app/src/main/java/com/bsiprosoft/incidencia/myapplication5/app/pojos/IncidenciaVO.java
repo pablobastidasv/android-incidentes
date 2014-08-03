@@ -12,7 +12,6 @@ public class IncidenciaVO {
     private String fechaIni;
     private String fechaFin;
     private String descripcion;
-    //private BigInteger responsable;
     private String responsable;
     private String cliente;
     private String estado;

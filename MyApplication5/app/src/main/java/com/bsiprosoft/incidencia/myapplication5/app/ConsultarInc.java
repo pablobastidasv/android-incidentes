@@ -1,5 +1,6 @@
 package com.bsiprosoft.incidencia.myapplication5.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,10 +12,15 @@ import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.asynctask.ConsultarAsyncTask;
 
+import java.lang.ref.WeakReference;
+
 /**
  * Created by Mitzy Valencia
  */
 public class ConsultarInc  extends ActionBarActivity{
+
+    private WeakReference<Activity> context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +47,16 @@ public class ConsultarInc  extends ActionBarActivity{
 
         try{
 		EditText txtNumIncidencia = (EditText) this.findViewById(R.id.txtNumIncidencia);
-
-		/*new ConsultarAsyncTask(this).execute("http://rest.bsiprosoft.com:7004/incidencias/",
-                txtNumIncidencia.getText().toString());*/
-            new ConsultarAsyncTask(this).execute("http://146.148.36.217:7004/incidencias/",
-                    txtNumIncidencia.getText().toString());
-
-
-
-            Intent i = new Intent(this, InfoListInc.class);
-            TextView txtNumInc = (TextView) this.findViewById(R.id.txtNumIncConsul);
-            // i.putExtra("Número de Incidencia: ",txtNumInc.getText().toString());
-            this.startActivity(i);
+            String  url = "http://146.148.36.217:7004/incidencias/"+txtNumIncidencia.getText().toString();
+            new ConsultarAsyncTask(this).execute(url);
 		}
 		catch(Exception ex)
 		{
-			Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            ex.printStackTrace();
+
+			Toast.makeText(this, "Error ", Toast.LENGTH_SHORT).show();
 		}
+
 
 
 

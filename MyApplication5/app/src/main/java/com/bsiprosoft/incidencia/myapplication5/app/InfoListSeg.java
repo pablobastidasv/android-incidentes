@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.SeguimientoAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.asynctask.ConsultarAsyncTask;
-import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncSeguimientoVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.SeguimientoVO;
 
 import java.util.ArrayList;
 
@@ -38,13 +37,13 @@ public class InfoListSeg extends Activity implements AdapterView.OnItemClickList
         super.onCreate(savedInstanceState);
 
             this.setContentView(R.layout.infolist_seg);
-        adptSeg  = new SeguimientoAdapter(new ArrayList<IncSeguimientoVO>(), this);
+        adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), this);
         ListView lView = (ListView) findViewById(R.id.listInfoSeg);
         lView.setAdapter(adptSeg);
         lView.setOnItemClickListener(this);
-        new ConsultarAsyncTask(this, adptSeg).execute("http://146.148.36.217:7004/incidencias/"
+        //new ConsultarAsyncTask(this, adptSeg).execute("http://146.148.36.217:7004/incidencias/"
 
-        );
+        //);
 
 
         this.setContentView(R.layout.infolist_seg);

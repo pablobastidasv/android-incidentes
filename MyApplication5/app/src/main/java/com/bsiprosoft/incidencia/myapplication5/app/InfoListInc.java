@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.asynctask.ConsultarAsyncTask;
@@ -24,12 +25,11 @@ public class InfoListInc extends Activity implements AdapterView.OnItemClickList
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.infolist_inc);
-        /*adptInc  = new IncidenciaAdapter(new ArrayList<IncidenciaVO>(), this);
-        ListView lView = (ListView) findViewById(R.id.listInfoInc);
-        lView.setAdapter(adptInc);
-        lView.setOnItemClickListener(this);
+        adptInc  = new IncidenciaAdapter(new ArrayList<IncidenciaVO>(), this);
+
+
         new ConsultarAsyncTask(this, adptInc).execute("http://rest.bsiprosoft.com:7004/incidencias/" );
-        this.setContentView(R.layout.infolist_inc);*/
+        this.setContentView(R.layout.infolist_inc);
 
     }
 

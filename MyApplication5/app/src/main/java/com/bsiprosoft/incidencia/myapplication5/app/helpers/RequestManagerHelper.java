@@ -1,5 +1,7 @@
 package com.bsiprosoft.incidencia.myapplication5.app.helpers;
 
+import android.util.Log;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -8,10 +10,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mikillo on 14/07/2014.
+ * Created by Mitzy Valencia on 14/07/2014.
  */
 public class RequestManagerHelper {
 
@@ -32,20 +37,26 @@ public class RequestManagerHelper {
         String text = null;
         try {
             // Add your data
-            List<NameValuePair> paramsList = new ArrayList<NameValuePair>(2);
+            JSONObject jsonRequest = new JSONObject();
             for (BasicNameValuePair p : params) {
-                paramsList.add(p);
+                jsonRequest.put(p.getName(), p.getValue());
             }
-            httppost.setEntity(new UrlEncodedFormEntity(paramsList));
-            // Execute HTTP Post Request
+            httppost.setHeader("content-type", "application/json");
+            httppost.setEntity(new StringEntity(jsonRequest.toString()));
+//            Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             text = getASCIIContentFromEntity(entity);
 
         } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
+
+            Log.e(RequestManagerHelper.class.getCanonicalName(), e.getMessage(), e);
+
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
+            Log.e(RequestManagerHelper.class.getCanonicalName(), e.getMessage(), e);
+        } catch (JSONException e) {
+            Log.e(RequestManagerHelper.class.getCanonicalName(), e.getMessage(), e);
         }
         return text;
 
@@ -61,12 +72,19 @@ public class RequestManagerHelper {
         HttpGet httpGet = new HttpGet(url);
 
         String text = null;
+
+
         try {
+
+
+            httpGet.setHeader("content-type", "application/json");
             HttpResponse response = httpClient.execute(httpGet, localContext);
             HttpEntity entity = response.getEntity();
             text = getASCIIContentFromEntity(entity);
+
         } catch (Exception e) {
             return e.getLocalizedMessage();
+
         }
         return text;
 
@@ -83,4 +101,6 @@ public class RequestManagerHelper {
         }
         return out.toString();
     }
+
+
 }

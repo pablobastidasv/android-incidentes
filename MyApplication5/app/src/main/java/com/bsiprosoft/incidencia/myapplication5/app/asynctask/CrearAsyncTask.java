@@ -5,29 +5,25 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Message;
-import android.util.JsonReader;
-import android.util.LogPrinter;
-import android.util.Printer;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.CrearInc;
+import com.bsiprosoft.incidencia.myapplication5.app.InfoListInc;
 import com.bsiprosoft.incidencia.myapplication5.app.R;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
+import com.bsiprosoft.incidencia.myapplication5.app.infoCreated;
 import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created by Mitzy Valencia
@@ -36,9 +32,9 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
 
 
     private IncidenciaAdapter adpt;
-
     private WeakReference<Activity> context;
     private ProgressDialog progressDialog;
+
 
 
     public CrearAsyncTask(Activity ctx) {
@@ -47,7 +43,7 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Creando Incidencia ... ");
         progressDialog.setCancelable(false);
-        progressDialog.setMax(200);
+        progressDialog.setMax(100);
     }
 
     @Override
@@ -56,32 +52,60 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
 
         if (s != null) {
             String responseText = "";
+            progressDialog.dismiss();
+            Boolean response = null;
             try {
 
+                JSONObject jsonObject = new JSONObject(s);
+                //responseText =  new JSONObject(s).getString("exitoso");
+                StringTokenizer stringTokenizer = new StringTokenizer(s, ":");
 
-                //JSONObject obj = new JSONObject(s);
-                JSONArray jsonArray = new JSONArray(new JSONObject(s).getString("mensaje"));
+                while(stringTokenizer.hasMoreTokens()){
 
-                ArrayList<IncidenciaVO> responsePost = new ArrayList<IncidenciaVO>();
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-
-                    IncidenciaVO inc = new IncidenciaVO();
-                    inc.setNumIncidencia(jsonObject.getString("numeroIncidencia"));
-                    responsePost.add(inc);
 
                 }
+                responseText = s.trim().toString();
+                JSONTokener tokener = new JSONTokener(s);
+                responseText = tokener.nextString('"');
 
-                //adpt.setListItemsInc(responsePost);
-                //adpt.notifyDataSetChanged();
+               while(tokener.more()){
+
+                   responseText = tokener.toString();
+                   System.out.print(responseText);
+                   if (responseText.equalsIgnoreCase("true")){
+                       response = true;
+                       //if (responseText.equalsIgnoreCase("numIncidencia"))
+                   }else if (responseText.equalsIgnoreCase("false")){
+                       response = false;
+                   }
+               }
+
+                //JSONArray jsonArray = new JSONArray(s);
+                if (response){
+                    IncidenciaVO inc = new IncidenciaVO();
+                    inc.setNumIncidencia(responseText =  new JSONObject(s).getString("numIncidencia"));
+
+                    Intent i = new Intent(context.get(), infoCreated.class);
+                    TextView numIncidencia = (TextView) this.context.get().findViewById(R.id.txtnumcreated);
+                    i.putExtra("numero",numIncidencia.getText().toString());
+                    context.get().startActivity(i);
+
+                }else{
+                    Toast.makeText(context.get(), "El número de documento ingresado" +
+                            "\n no existe. Por favor verifique. "+responseText, Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(context.get(), CrearInc.class);
+                    context.get().startActivity(i);
+                }
 
             } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(context.get(), "Lo sentimos, su solicitud no se ha podido " +
+                        "\n realizar . Por favor intente mas tarde. " +responseText, Toast.LENGTH_SHORT).show();
 
-                //Toast.makeText(context.get(), "Su incidencia no pudo ser creada !!!", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context.get(), e.toString(), Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
-                Toast.makeText(context.get(), "FAIL !!!", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                Toast.makeText(context.get(), "Ha ocurrido un error durante" +
+                        "\n el proceso.", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -93,9 +117,9 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
     protected void onPreExecute() {
         super.onPreExecute();
 
-        progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+        progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener(){
             @Override
-            public void onCancel(DialogInterface dialog) {
+            public void onCancel(DialogInterface dialog){
                 CrearAsyncTask.this.cancel(true);
             }
         });
@@ -106,6 +130,7 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
     @Override
     protected void onCancelled() {
         super.onCancelled();
+        Toast.makeText(context.get(),"Cancelado" , Toast.LENGTH_LONG).show();
     }
 
     @Override

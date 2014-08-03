@@ -7,24 +7,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.bsiprosoft.incidencia.myapplication5.app.R;
-import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncSeguimientoVO;
-import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.SeguimientoVO;
 
 import java.util.List;
 
 /**
  * Created by Mitzy Valencia
  */
-public class SeguimientoAdapter extends ArrayAdapter<IncSeguimientoVO> {
+public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
 
-    private List<IncSeguimientoVO> listItemsSeg;
+    private List<SeguimientoVO> listItemsSeg;
     private Context ctx;
 
     public SeguimientoAdapter(Context context, int resource) {
         super(context, resource);
     }
 
-    public SeguimientoAdapter(List<IncSeguimientoVO> infoSeg, Context ctx)
+    public SeguimientoAdapter(List<SeguimientoVO> infoSeg, Context ctx)
     {
         super(ctx, R.layout.infolist_seg, infoSeg);
         this.listItemsSeg = infoSeg;
@@ -40,7 +39,7 @@ public class SeguimientoAdapter extends ArrayAdapter<IncSeguimientoVO> {
         return super.getContext();
     }
 
-   /* public SeguimientoAdapter(List<IncSeguimientoVO> seguimiento, Context ctx)
+   /* public SeguimientoAdapter(List<SeguimientoVO> seguimiento, Context ctx)
     {
         super(ctx, R.layout.infolist_inc, seguimiento);
         this.listItems = seguimiento;
@@ -61,7 +60,7 @@ public class SeguimientoAdapter extends ArrayAdapter<IncSeguimientoVO> {
             v = inflater.inflate(R.layout.infolist_inc,parent,false);
         }
 
-        IncSeguimientoVO u = listItemsSeg.get(position);
+        SeguimientoVO u = listItemsSeg.get(position);
         //TextView text = (TextView) v.findViewById(R.id.lblNombre);
         //text.setText(String.format("%s %s",u.getNombre(), u.getApellido()));
         //TextView text1 = (TextView) v.findViewById(R.id.lblId);
@@ -73,11 +72,11 @@ public class SeguimientoAdapter extends ArrayAdapter<IncSeguimientoVO> {
 
     // lista info del seguimiento
 
-    public List<IncSeguimientoVO> getListItemsSeg() {
+    public List<SeguimientoVO> getListItemsSeg() {
         return listItemsSeg;
     }
 
-    public void setListItemsSeg(List<IncSeguimientoVO> listItemsSeg) {
+    public void setListItemsSeg(List<SeguimientoVO> listItemsSeg) {
         this.listItemsSeg = listItemsSeg;
     }
 }
