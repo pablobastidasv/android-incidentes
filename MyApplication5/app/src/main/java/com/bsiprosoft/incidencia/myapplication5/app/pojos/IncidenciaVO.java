@@ -1,5 +1,7 @@
 package com.bsiprosoft.incidencia.myapplication5.app.pojos;
 
+import android.content.Context;
+
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -19,6 +21,8 @@ public class IncidenciaVO {
     private String empresaId;
     private String categoria;
     private String prioridad;
+
+
 
     public String getPrioridad() {
         return prioridad;

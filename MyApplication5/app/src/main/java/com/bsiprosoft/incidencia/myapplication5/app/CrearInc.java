@@ -44,6 +44,7 @@ public class CrearInc extends ActionBarActivity {
 
 		EditText txtDescripcion = (EditText) this.findViewById(R.id.txtDescripcion);
 
+
 		new CrearAsyncTask(this).execute("http://146.148.36.217:7004/incidencias/crear",
                 txtIdCliente.getText().toString(),
                 txtDescripcion.getText().toString());

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.CrearInc;
 import com.bsiprosoft.incidencia.myapplication5.app.InfoListInc;
+import com.bsiprosoft.incidencia.myapplication5.app.MainActivity;
 import com.bsiprosoft.incidencia.myapplication5.app.R;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.infoCreated;
@@ -56,43 +57,22 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
             Boolean response = null;
             try {
 
+
                 JSONObject jsonObject = new JSONObject(s);
-                //responseText =  new JSONObject(s).getString("exitoso");
-                StringTokenizer stringTokenizer = new StringTokenizer(s, ":");
+                Boolean process =  jsonObject.getBoolean("exitoso");
 
-                while(stringTokenizer.hasMoreTokens()){
-
-
-                }
-                responseText = s.trim().toString();
-                JSONTokener tokener = new JSONTokener(s);
-                responseText = tokener.nextString('"');
-
-               while(tokener.more()){
-
-                   responseText = tokener.toString();
-                   System.out.print(responseText);
-                   if (responseText.equalsIgnoreCase("true")){
-                       response = true;
-                       //if (responseText.equalsIgnoreCase("numIncidencia"))
-                   }else if (responseText.equalsIgnoreCase("false")){
-                       response = false;
-                   }
-               }
-
-                //JSONArray jsonArray = new JSONArray(s);
-                if (response){
+                if (process){
                     IncidenciaVO inc = new IncidenciaVO();
-                    inc.setNumIncidencia(responseText =  new JSONObject(s).getString("numIncidencia"));
-
-                    Intent i = new Intent(context.get(), infoCreated.class);
-                    TextView numIncidencia = (TextView) this.context.get().findViewById(R.id.txtnumcreated);
-                    i.putExtra("numero",numIncidencia.getText().toString());
+                    inc.setNumIncidencia(jsonObject.getString("numIncincia"));
+                    Toast.makeText(context.get(),"Número de incidencia: "+inc.getNumIncidencia(), Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(context.get(), MainActivity.class);
                     context.get().startActivity(i);
-
                 }else{
-                    Toast.makeText(context.get(), "El número de documento ingresado" +
-                            "\n no existe. Por favor verifique. "+responseText, Toast.LENGTH_LONG).show();
+
+                    JSONObject error = new JSONObject(jsonObject.getString("mensajes"));
+                    String mensaje = error.getString("mensaje");
+                    String exception = error.getString("tipoMensaje");
+                    Toast.makeText(context.get(),exception+"\n"+mensaje, Toast.LENGTH_LONG).show();
                     Intent i = new Intent(context.get(), CrearInc.class);
                     context.get().startActivity(i);
                 }
@@ -100,7 +80,7 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(context.get(), "Lo sentimos, su solicitud no se ha podido " +
-                        "\n realizar . Por favor intente mas tarde. " +responseText, Toast.LENGTH_SHORT).show();
+                        "\n realizar . Por favor intente mas tarde. ", Toast.LENGTH_SHORT).show();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -116,7 +96,6 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
         progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener(){
             @Override
             public void onCancel(DialogInterface dialog){
@@ -125,6 +104,7 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
         });
         progressDialog.setProgress(0);
         progressDialog.show();
+
     }
 
     @Override
@@ -136,8 +116,11 @@ public class CrearAsyncTask extends AsyncTask<String,String, String> {
     @Override
     protected String doInBackground(String... params) {
 
-        return com.bsiprosoft.incidencia.myapplication5.app.helpers.RequestManagerHelper.startPostRequest(params[0],
+
+        String response = com.bsiprosoft.incidencia.myapplication5.app.helpers.RequestManagerHelper.startPostRequest(params[0],
                 new BasicNameValuePair("descripcion", params[2]), new BasicNameValuePair("docPersona", params[1]));
+
+        return response;
     }
 
 

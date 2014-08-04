@@ -18,73 +18,84 @@ import java.util.List;
 /**
  * Created by Mitzy Valencia
  */
-public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO> {
+public class IncidenciaAdapter extends ArrayAdapter<IncidenciaVO>{
 
-    private List<IncidenciaVO> listItemsInc;
-    private ArrayList<IncidenciaVO> responseInc;
+    private List<IncidenciaVO> listItems;
     private Context ctx;
 
-    public IncidenciaAdapter(Context context, int resource) {
-        super(context, resource);
+    public List<IncidenciaVO> getListItems() {
+        return listItems;
     }
 
-    public IncidenciaAdapter(List<IncidenciaVO> infoInc, Context ctx)
+    public void setListItems(List<IncidenciaVO> listItems) {
+        this.listItems = listItems;
+    }
+
+    public IncidenciaAdapter(List<IncidenciaVO> users, Context ctx)
     {
-        super(ctx, R.layout.infolist_inc, infoInc);
-        this.listItemsInc = infoInc;
+        super(ctx,R.layout.infolist_inc, users);
+        this.listItems = users;
         this.ctx = ctx;
     }
-
     public int getCount() {
-        if (listItemsInc != null)
-            return listItemsInc.size();
+        if (listItems != null)
+            return listItems.size();
         return 0;
     }
 
+    public IncidenciaVO getItem(int position) {
+        if (listItems != null)
+            return listItems.get(position);
+        return null;
+    }
 
+    public long getItemId(int position) {
+        if (listItems != null)
+            return listItems.get(position).hashCode();
+        return 0;
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
+
+
         View v = convertView;
+
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.infolist_inc,parent,false);
         }
 
-        IncidenciaVO u = listItemsInc.get(position);
-        //
-        EditText text = (EditText) v.findViewById(R.id.txtNumIncidencia);
-        text.setText(String.format("%s %s",u.getNumIncidencia()));
-
-       // TextView t1 = (TextView) v.findViewById(R.id.txtCategoria);
-       // t1.setText(String.format("%s %s",u.getCategoria()));
+        IncidenciaVO u = listItems.get(position);
+        TextView text = (TextView) v.findViewById(R.id.txtCategoria);
+        text.setText(String.format("%s %s",u.getCategoria()));
+        //TextView text1 = (TextView) v.findViewById(R.id.txtCategoria);
+        //text1.setText(u.getId());
         return v;
 
-
     }
 
-    // lista info de la Incidencia
-
-    public List<IncidenciaVO> getListItemsInc() {
-        return listItemsInc;
+    public IncidenciaAdapter(Context context, int resource) {
+        super(context, resource);
     }
 
-    public void setListItemsInc(List<IncidenciaVO> listItemsInc) {
-        this.listItemsInc = listItemsInc;
+    public IncidenciaAdapter(Context context, int resource, int textViewResourceId) {
+        super(context, resource, textViewResourceId);
     }
 
-    // lista que trae el numero de la incidencia creada
-
-    public List<IncidenciaVO> getResponseInc() {
-        return responseInc;
+    public IncidenciaAdapter(Context context, int resource, IncidenciaVO[] objects) {
+        super(context, resource, objects);
     }
 
-    public void setResponseInc(ArrayList<IncidenciaVO> responseInc) {
-        this.responseInc = responseInc;
+    public IncidenciaAdapter(Context context, int resource, int textViewResourceId, IncidenciaVO[] objects) {
+        super(context, resource, textViewResourceId, objects);
     }
 
+    public IncidenciaAdapter(Context context, int resource, List<IncidenciaVO> objects) {
+        super(context, resource, objects);
+    }
 
-
-
+    public IncidenciaAdapter(Context context, int resource, int textViewResourceId, List<IncidenciaVO> objects) {
+        super(context, resource, textViewResourceId, objects);
+    }
 }
