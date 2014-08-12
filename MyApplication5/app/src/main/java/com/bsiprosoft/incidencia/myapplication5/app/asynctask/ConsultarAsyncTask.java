@@ -11,11 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bsiprosoft.incidencia.myapplication5.app.ConsultarInc;
 import com.bsiprosoft.incidencia.myapplication5.app.InfoListInc;
 import com.bsiprosoft.incidencia.myapplication5.app.R;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.adapters.SeguimientoAdapter;
 import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
+import com.bsiprosoft.incidencia.myapplication5.app.pojos.SeguimientoVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,9 +36,11 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
     //private Activity context;
     //
     private IncidenciaAdapter adptInc;
-    //private SeguimientoAdapter adptSeg;
+    private SeguimientoAdapter adptSeg;
     private WeakReference<Activity> context;
     private ProgressDialog progressDialog;
+    private String prueba;
+    private InfoListInc info;
 
 
 
@@ -91,39 +95,70 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
             try {
 
                 JSONObject jsonObject = new JSONObject(s);
-                ArrayList<IncidenciaVO>  infolist = new ArrayList<IncidenciaVO>();
-                //JSONArray jsonArray = new JSONArray(jsonObject.toString());
+                ArrayList<SeguimientoVO> seguimientos = new ArrayList<SeguimientoVO>();
+
+                //ArrayList<IncidenciaVO>  infolist = new ArrayList<IncidenciaVO>();
+                 IncidenciaVO infolist = new IncidenciaVO();
+                //adptInc = new IncidenciaAdapter();
 
                 if(s != null){
+                           // IncidenciaVO inc = new IncidenciaVO();
+                            SeguimientoVO seg = new SeguimientoVO();
+                    infolist.setCategoria(jsonObject.getString("nombreCategoria"));
+                    infolist.setCliente(jsonObject.getString("usuarioReportaSinLogin"));
+                    infolist.setEstado(jsonObject.getString("estadoNombre"));
+                    infolist.setDescripcion(jsonObject.getString("descripcion"));
+                    infolist.setPrioridad(jsonObject.getString("nombrePrioridad"));
+                    infolist.setResponsable(jsonObject.getString("usuariResponsable"));
+                    infolist.setFechaIni(jsonObject.getString("fechaInicio"));
 
-                        for (int i=0 ; i<jsonObject.length(); i++){
+                    info = new InfoListInc();
+                    adptInc.setListItems(infolist);
+                    info.datosInc(adptInc);
+                        try{
 
-                            IncidenciaVO inc = new IncidenciaVO();
-                            //JSONObject jsonObject2= (JSONObject) jsonArray.get(i);
-                            inc.setCategoria(jsonObject.getString("nombreCategoria"));
-                            inc.setCliente(jsonObject.getString("usuarioReportaSinLogin"));
-                            inc.setEstado(jsonObject.getString("estadoNombre"));
-                            inc.setDescripcion(jsonObject.getString("descripcion"));
-                            inc.setPrioridad(jsonObject.getString("nombrePrioridad"));
-                            inc.setResponsable(jsonObject.getString("usuariResponsable"));
-                            inc.setFechaIni(jsonObject.getString("fechaInicio"));
-                            infolist.add(inc);
+                            JSONArray jsonArray = new JSONArray(new JSONObject(s).getString("segumiento"));
+                            for(int i =0; i < jsonArray.length(); i++)
+                            {
+                                JSONObject jsonObjectSeg= (JSONObject) jsonArray.get(i);
+                                seg.setFecha(jsonObjectSeg.getString("fecha"));
+                                seg.setCategoria(jsonObjectSeg.getString("categoriaNombre"));
+                                seg.setResponsable(jsonObjectSeg.getString("asesor"));
+                                seg.setDescripcion(jsonObjectSeg.getString("descripcion"));
+                                seg.setPrioridad(jsonObjectSeg.getString("prioridadNombre"));
+                                seg.setEstado(jsonObjectSeg.getString("estadoNombre"));
+                                // seg.setSeguimientoId(jsonObject.getString("seguimientoId"));
+
+
+                                seguimientos.add(seg);
+
+                            }
+
+                        }catch (JSONException e ){
+
+
+                            Intent i = new Intent(context.get(), InfoListInc.class);
+                            context.get().startActivity(i);
+                            Toast.makeText(context.get(), "Incidencia sin seguimientos ", Toast.LENGTH_LONG).show();
+
+
                         }
-                        //JSONObject jsonObject= (JSONObject) jsonArray.get(i);
+
+
+                   // adptSeg = new SeguimientoAdapter(seguimientos, context.get());
+                   // adptSeg.setListItemsSeg(seguimientos); ESTE NO
+                   // adptSeg.notifyDataSetChanged();
 
 
 
-                 	adptInc.setListItems(infolist);
-            	    adptInc.notifyDataSetChanged();
-
-                    Toast.makeText(context.get(), " "+infolist.get(1), Toast.LENGTH_LONG).show();
                     Intent i = new Intent(context.get(), InfoListInc.class);
-                    TextView txtcategoria = (TextView) this.context.get().findViewById(R.id.txtCategoria);
+                    //info.datosInc(adptInc);
                     context.get().startActivity(i);
 
 
+
                 }else {
-                    Toast.makeText(context.get(), "NO EXISTE "+adptInc.getItem(1), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context.get(), "NO EXISTE ", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -137,7 +172,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
             catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(context.get(), "Ha ocurrido un error durante" +
-                        "\n el proceso. "+ e, Toast.LENGTH_SHORT).show();
+                        "\n el proceso. "+e, Toast.LENGTH_SHORT).show();
 
             }
         }else{

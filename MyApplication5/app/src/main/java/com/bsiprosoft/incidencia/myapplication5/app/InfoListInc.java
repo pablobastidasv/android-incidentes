@@ -20,22 +20,19 @@ import java.util.ArrayList;
 public class InfoListInc extends Activity {
 
     private IncidenciaAdapter adptInc;
+    private IncidenciaVO inc;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.infolist_inc);
-  /*      adptInc  = new IncidenciaAdapter(new ArrayList<IncidenciaVO>(), this);
-        EditText txtNumIncidencia = (EditText) this.findViewById(R.id.txtNumIncidencia);
-        String  url = "http://146.148.36.217:7004/incidencias/"+txtNumIncidencia.getText().toString();
-        new ConsultarAsyncTask(this).execute(url);
-        TextView categoria = (TextView) findViewById(R.id.txtCategoria);
-        categoria.setText((CharSequence) adptInc.getItem(1).getCategoria());*/
+        adptInc = new IncidenciaAdapter();
 
-      /*  ListView lView = (ListView) findViewById(R.id.lvUsers);
-        lView.setAdapter(adptInc);
-        lView.setOnItemClickListener(this);*/
+
+       TextView categoria = (TextView)this.findViewById(R.id.txtCategoria);
+       categoria.setText(inc.getCategoria());
+
 
 
     }
@@ -50,4 +47,13 @@ public class InfoListInc extends Activity {
     protected void onStart() {
         super.onStart();
     }
+
+
+    public  void datosInc (IncidenciaAdapter adpt){
+        inc = new IncidenciaVO();
+        inc.setCategoria(adpt.getCategoria());
+
+    }
 }
+
+

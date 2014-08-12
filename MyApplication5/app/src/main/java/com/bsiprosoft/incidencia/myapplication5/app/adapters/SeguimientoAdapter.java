@@ -23,12 +23,19 @@ public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
         super(context, resource);
     }
 
+    public SeguimientoAdapter(Context context, int resource, List<SeguimientoVO> listItemsSeg) {
+        super(context, resource);
+        this.listItemsSeg = listItemsSeg;
+    }
+
     public SeguimientoAdapter(List<SeguimientoVO> infoSeg, Context ctx)
     {
         super(ctx, R.layout.infolist_seg, infoSeg);
         this.listItemsSeg = infoSeg;
         this.ctx = ctx;
     }
+
+
     public int getCount() {
         if (listItemsSeg != null)
             return listItemsSeg.size();
@@ -79,4 +86,6 @@ public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
     public void setListItemsSeg(List<SeguimientoVO> listItemsSeg) {
         this.listItemsSeg = listItemsSeg;
     }
+
+
 }
