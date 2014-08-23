@@ -5,26 +5,17 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bsiprosoft.incidencia.myapplication5.app.CrearInc;
-import com.bsiprosoft.incidencia.myapplication5.app.InfoListInc;
 import com.bsiprosoft.incidencia.myapplication5.app.MainActivity;
-import com.bsiprosoft.incidencia.myapplication5.app.R;
-import com.bsiprosoft.incidencia.myapplication5.app.adapters.IncidenciaAdapter;
-import com.bsiprosoft.incidencia.myapplication5.app.infoCreated;
 import com.bsiprosoft.incidencia.myapplication5.app.pojos.IncidenciaVO;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * Created by Mitzy Valencia
@@ -32,7 +23,7 @@ import java.util.StringTokenizer;
 public class CrearAsyncTask extends AsyncTask<String,String, String> {
 
 
-    private IncidenciaAdapter adpt;
+
     private WeakReference<Activity> context;
     private ProgressDialog progressDialog;
 

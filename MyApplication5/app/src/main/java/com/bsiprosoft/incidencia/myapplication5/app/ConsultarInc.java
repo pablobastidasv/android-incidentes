@@ -47,18 +47,18 @@ public class ConsultarInc  extends ActionBarActivity{
 
        try{
 		EditText txtNumIncidencia = (EditText) this.findViewById(R.id.txtNumIncidencia);
-            String  url = "http://146.148.36.217:7004/incidencias/"+txtNumIncidencia.getText().toString();
-            new ConsultarAsyncTask(this).execute(url);
+           Intent i = new Intent(this, InfoListInc.class);
+           i.putExtra("numIncidencia", txtNumIncidencia.getText().toString());
+           this.startActivity(i);
+
 		}
 		catch(Exception ex)
 		{
             ex.printStackTrace();
-
 			Toast.makeText(this, "Error ", Toast.LENGTH_SHORT).show();
 		}
 
-     /*  Intent i = new Intent(this, InfoListInc.class);
-        this.startActivity(i);*/
+
 
 
 
