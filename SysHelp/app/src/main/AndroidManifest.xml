@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.syshelp.app" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="SysHelp"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.syshelp.app.activities.MainActivity"
+            android:label="SysHelp" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.syshelp.app.activities.CrearInc"
+            android:label="Crear Incidencia" />
+        <activity android:name="com.syshelp.app.activities.ConsultarInc"
+            android:label="Consultar Incidencia" />
+        <activity android:name="com.syshelp.app.activities.InfoListSeg"
+            android:label="Seguimientos" />
+        <activity android:name="com.syshelp.app.activities.InfoListInc"
+            android:label="Mi Incidencia" />
+        <activity android:name="com.syshelp.app.activities.InfoCreated"
+            android:label="Nueva Incidencia" />
+
+    </application>
+
+</manifest>
