@@ -178,6 +178,11 @@
                 android:text="Ver Seguimientos"
                 android:onClick="onClickVerSeguimientos"
                 style="@style/ButtonStyle"/>
+
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expandableListView" />
         </LinearLayout>
 
 

@@ -7,8 +7,8 @@
     <style name="Label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#ff531762</item>
-        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">#ff33103e</item>
+        <item name="android:textSize">25dp</item>
 
         <item name="android:textStyle">bold</item>
     </style>
@@ -17,7 +17,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#ff33103e</item>
-        <item name="android:textSize">25dp</item>
+        <item name="android:textSize">20dp</item>
 
     </style>
 
@@ -26,22 +26,22 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#ff030103</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">15dp</item>
 
     </style>
 
     <style name="BackgroundLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:textColor">#ff6fd6e4</item>
+        <item name="android:textColor">#ff40e4b2</item>
 
     </style>
 
     <style name="ButtonStyle">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:textColor">#ff6c1b7e</item>
-        <item name="android:background">#ff3ecdc8</item>
+        <item name="android:textColor">#ff551563</item>
+        <item name="android:background">#ff40e4b2</item>
         <item name="android:textSize">25dp</item>
         <item name="android:textStyle">bold</item>
 

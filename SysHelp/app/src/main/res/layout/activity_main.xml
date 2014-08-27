@@ -9,14 +9,19 @@
     tools:context="com.syshelp.app.activities.MainActivity"
     android:background="#fff5f5f7">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#6c1b7e"
-        android:src="@drawable/ic_launcher"
-        android:layout_centerHorizontal="true"
 
-        />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff5f5f7"
+            android:src="@drawable/logo_big"
+            android:layout_centerHorizontal="true"
+
+            />
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"

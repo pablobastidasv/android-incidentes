@@ -22,11 +22,7 @@ import java.util.ArrayList;
  */
 public class InfoListInc extends Activity {
 
-
-    private IncidenciaVO inc;
-    private WeakReference<Activity> context;
     private String message;
-    private SeguimientoAdapter adptSeg;
 
     /**
      *
@@ -37,7 +33,7 @@ public class InfoListInc extends Activity {
 
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.infolist_inc);
-
+        //adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), infoListSeg.getActivity());
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -45,9 +41,8 @@ public class InfoListInc extends Activity {
         }
 
         String  url = "http://146.148.36.217:7004/incidencias/"+message;
+       // new ConsultarAsyncTask(infoListSeg.getActivity(),adptSeg);
         new ConsultarAsyncTask(this).execute(url);
-
-
         TextView numIncidencia = (TextView) this.findViewById(R.id.txtNumIncidencia);
         numIncidencia.setText(message);
     }

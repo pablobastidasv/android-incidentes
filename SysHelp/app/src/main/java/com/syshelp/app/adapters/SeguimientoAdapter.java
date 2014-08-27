@@ -13,7 +13,7 @@ import com.syshelp.app.pojos.SeguimientoVO;
 import java.util.List;
 
 /**
- * Created by Mitzy Valencia on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
 
@@ -75,10 +75,6 @@ public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
         }
 
         SeguimientoVO u = listItemsSeg.get(position);
-        //TextView text = (TextView) v.findViewById(R.id.lblNombre);
-        //text.setText(String.format("%s %s",u.getNombre(), u.getApellido()));
-        //TextView text1 = (TextView) v.findViewById(R.id.lblId);
-        //text1.setText(u.getId());
         return v;
 
 

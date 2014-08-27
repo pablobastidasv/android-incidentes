@@ -22,7 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Created by mikillo on 24/08/2014.
+ * Created by Mitzy Valencia on 24/08/2014.
  */
 public class RequestManagerHelper {
 
@@ -100,17 +100,6 @@ public class RequestManagerHelper {
 
     }
 
-    private static  String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
-        InputStream in = entity.getContent();
-        StringBuffer out = new StringBuffer();
-        int n = 1;
-        while (n>0) {
-            byte[] b = new byte[4096];
-            n =  in.read(b);
-            if (n>0) out.append(new String(b, 0, n));
-        }
-        return out.toString();
-    }
     private static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));

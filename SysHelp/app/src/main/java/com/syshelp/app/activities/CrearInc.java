@@ -12,7 +12,7 @@ import com.syshelp.app.R;
 import com.syshelp.app.asynctask.CrearAsyncTask;
 
 /**
- * Created by Mitzy Valencia on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class CrearInc extends ActionBarActivity {
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,15 +34,15 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
 
     private SeguimientoAdapter adptSeg;
-    private WeakReference<Activity> context;
-    private Context ctx;
+    private WeakReference<Activity> context1;
+    private WeakReference<Activity> context2;
     private ProgressDialog progressDialog;
-    private InfoListInc info;
+    private InfoListSeg infoListSeg;
 
     public ConsultarAsyncTask(Activity ctx)
     {
-        this.context = new WeakReference<Activity>(ctx);
-        progressDialog = new ProgressDialog(context.get());
+        this.context1 = new WeakReference<Activity>(ctx);
+        progressDialog = new ProgressDialog(context1.get());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Consultando ... ");
         progressDialog.setCancelable(false);
@@ -50,7 +51,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
     public ConsultarAsyncTask(Activity ctx , SeguimientoAdapter adptSeg)
     {
-        this.context = new WeakReference<Activity>(ctx);
+        this.context2 = new WeakReference<Activity>(ctx);
         this.adptSeg = adptSeg;
     }
 
@@ -84,7 +85,6 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
                 if(s != null) {
 
                     infolist.setCategoria(jsonObject.getString("nombreCategoria"));
-                    infolist.setCliente(jsonObject.getString("usuarioReportaSinLogin"));
                     infolist.setEstado(jsonObject.getString("estadoNombre"));
                     infolist.setDescripcion(jsonObject.getString("descripcion"));
                     infolist.setPrioridad(jsonObject.getString("nombrePrioridad"));
@@ -111,54 +111,56 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
                             seguimientoVO.setEstado(jsonObjectSeg.getString("estadoNombre"));
 
                             seg.add(seguimientoVO);
+
+
                         }
+//                        new ConsultarAsyncTask(infoListSeg.getActivity(),adptSeg);
+                        adptSeg.setListItems(seg);
+                        ListView lView = (ListView) context1.get().findViewById(R.id.listInfoSeg);
+                        lView.setAdapter(adptSeg);
 
-
-                       // adptSeg.setListItems(seg);
-                        //adptSeg.notifyDataSetChanged();
 
 
                     }
                 }
 
                 // Datos de Incidencia
-                TextView categoria = (TextView) context.get().findViewById(R.id.txtCategoria);
+                TextView categoria = (TextView) context1.get().findViewById(R.id.txtCategoria);
                 categoria.setText(infolist.getCategoria());
-                TextView asesor = (TextView) context.get().findViewById(R.id.txtAsesor);
+                TextView asesor = (TextView) context1.get().findViewById(R.id.txtAsesor);
                 asesor.setText(infolist.getResponsable());
-                TextView estado = (TextView) context.get().findViewById(R.id.txtEstado);
+                TextView estado = (TextView) context1.get().findViewById(R.id.txtEstado);
                 estado.setText(infolist.getEstado());
-                TextView prioridad = (TextView) context.get().findViewById(R.id.txtPrioridad);
+                TextView prioridad = (TextView) context1.get().findViewById(R.id.txtPrioridad);
                 prioridad.setText(infolist.getPrioridad());
-                TextView fecha = (TextView) context.get().findViewById(R.id.txtFecha);
+                TextView fecha = (TextView) context1.get().findViewById(R.id.txtFecha);
                 fecha.setText(infolist.getFechaIni());
-                TextView descripcion = (TextView) context.get().findViewById(R.id.txtdescripcion);
+                TextView descripcion = (TextView) context1.get().findViewById(R.id.txtdescripcion);
                 descripcion.setText(infolist.getDescripcion());
 
-                adptSeg.setListItems(seg);
-                adptSeg.notifyDataSetChanged();
+
 
             }
             catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(context.get(), "Lo sentimos, su solicitud no se ha podido " +
+                Toast.makeText(context1.get(), "Lo sentimos, su solicitud no se ha podido " +
                         "\n realizar . Por favor intente mas tarde. ", Toast.LENGTH_LONG).show();
 
-                Intent i = new Intent(context.get(), ConsultarInc.class);
-                context.get().startActivity(i);
+                Intent i = new Intent(context1.get(), ConsultarInc.class);
+                context1.get().startActivity(i);
 
             }
             catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(context.get(), "Ha ocurrido un error durante" +
+                Toast.makeText(context1.get(), "Ha ocurrido un error durante" +
                         "\n el proceso. ", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(context.get(), ConsultarInc.class);
-                context.get().startActivity(i);
+                Intent i = new Intent(context1.get(), ConsultarInc.class);
+                context1.get().startActivity(i);
 
             }
         }else{
-            Toast.makeText(context.get(), "Ha ocurrido un error durante" +
+            Toast.makeText(context1.get(), "Ha ocurrido un error durante" +
                     "\n el proceso", Toast.LENGTH_SHORT).show();
         }
 
@@ -172,7 +174,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
     @Override
     protected void onCancelled() {
-        super.onCancelled(); Toast.makeText(context.get(), "Tarea cancelada!", Toast.LENGTH_SHORT).show();
+        super.onCancelled(); Toast.makeText(context1.get(), "Tarea cancelada!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -12,24 +12,34 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.syshelp.app.activities.MainActivity"
-            android:label="SysHelp" >
+            android:label="SysHelp"
+            android:icon="@drawable/logo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity android:name="com.syshelp.app.activities.CrearInc"
-            android:label="Crear Incidencia" />
+            android:label="Crear Incidencia"
+            android:icon="@drawable/logo"/>
         <activity android:name="com.syshelp.app.activities.ConsultarInc"
-            android:label="Consultar Incidencia" />
+            android:label="Consultar Incidencia"
+            android:icon="@drawable/logo"/>
         <activity android:name="com.syshelp.app.activities.InfoListSeg"
-            android:label="Seguimientos" />
+            android:label="Seguimientos"
+            android:icon="@drawable/logo"/>
         <activity android:name="com.syshelp.app.activities.InfoListInc"
-            android:label="Mi Incidencia" />
+            android:label="Mi Incidencia"
+            android:icon="@drawable/logo"/>
         <activity android:name="com.syshelp.app.activities.InfoCreated"
-            android:label="Nueva Incidencia" />
+            android:label="Nueva Incidencia"
+            android:icon="@drawable/logo"/>
+        <activity android:name="com.syshelp.app.activities.UserHelp"
+            android:label="Ayuda"
+            android:icon="@drawable/logo"/>
 
     </application>
 

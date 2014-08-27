@@ -14,7 +14,7 @@ import com.syshelp.app.R;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by mikillo on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class ConsultarInc  extends ActionBarActivity {
 

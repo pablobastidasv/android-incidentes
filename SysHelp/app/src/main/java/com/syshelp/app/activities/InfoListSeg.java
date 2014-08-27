@@ -3,6 +3,7 @@ package com.syshelp.app.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,12 +18,29 @@ import com.syshelp.app.pojos.SeguimientoVO;
 import java.util.ArrayList;
 
 /**
- * Created by Mitzy Valencia on 24/08/2014.
+ * Created by Mitzy Valencia
  */
-public class InfoListSeg extends Activity implements AdapterView.OnItemClickListener{
+public class InfoListSeg extends Activity implements AdapterView.OnItemClickListener {
 
     private SeguimientoAdapter adptSeg;
     private Context ctx;
+    private Activity activity;
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public Context getCtx() {
+        return ctx;
+    }
+
+    public void setCtx(Context ctx) {
+        this.ctx = ctx;
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,7 +69,8 @@ public class InfoListSeg extends Activity implements AdapterView.OnItemClickList
             desc.setText("La incidencia no registra seguimientos. " +
                     "Por favor ponte en contacto para mayor información.");
 
-        }else{
+           }
+        else{
 
             ListView lView = (ListView) findViewById(R.id.listInfoSeg);
             lView.setAdapter(adptSeg);

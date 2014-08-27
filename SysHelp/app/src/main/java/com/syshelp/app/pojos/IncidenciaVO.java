@@ -3,7 +3,7 @@ package com.syshelp.app.pojos;
 import java.math.BigInteger;
 
 /**
- * Created by mikillo on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class IncidenciaVO {
 
@@ -12,10 +12,8 @@ public class IncidenciaVO {
     private String fechaFin;
     private String descripcion;
     private String responsable;
-    private String cliente;
     private String estado;
     private String numIncidencia;
-    private String empresaId;
     private String categoria;
     private String prioridad;
 
@@ -23,17 +21,17 @@ public class IncidenciaVO {
         super();
     }
 
-    public IncidenciaVO(BigInteger incidenteId, String fechaIni, String fechaFin, String descripcion, String responsable, String cliente, String estado, String numIncidencia, String empresaId, String categoria, String prioridad) {
+    public IncidenciaVO(BigInteger incidenteId, String fechaIni, String fechaFin, String descripcion, String responsable,
+                        String estado, String numIncidencia, String categoria, String prioridad) {
         super();
         this.incidenteId = incidenteId;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.descripcion = descripcion;
         this.responsable = responsable;
-        this.cliente = cliente;
+
         this.estado = estado;
         this.numIncidencia = numIncidencia;
-        this.empresaId = empresaId;
         this.categoria = categoria;
         this.prioridad = prioridad;
     }
@@ -78,14 +76,6 @@ public class IncidenciaVO {
         this.responsable = responsable;
     }
 
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
-
     public String getEstado() {
         return estado;
     }
@@ -100,14 +90,6 @@ public class IncidenciaVO {
 
     public void setNumIncidencia(String numIncidencia) {
         this.numIncidencia = numIncidencia;
-    }
-
-    public String getEmpresaId() {
-        return empresaId;
-    }
-
-    public void setEmpresaId(String empresaId) {
-        this.empresaId = empresaId;
     }
 
     public String getCategoria() {

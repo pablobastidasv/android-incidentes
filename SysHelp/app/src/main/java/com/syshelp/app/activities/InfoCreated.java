@@ -14,7 +14,7 @@ import com.syshelp.app.asynctask.CrearAsyncTask;
  */
 public class InfoCreated extends ActionBarActivity{
 
-    String id , descripcion;
+    private String id , descripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
