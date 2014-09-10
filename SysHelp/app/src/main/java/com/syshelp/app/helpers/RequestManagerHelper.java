@@ -22,10 +22,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * Created by Mitzy Valencia on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class RequestManagerHelper {
 
+    /**
+     *
+     * @param url
+     * @param params
+     * @return
+     */
     public static String startPostRequest(String url, BasicNameValuePair... params)
     {
         // Create a new HttpClient and Post Header
@@ -67,6 +73,11 @@ public class RequestManagerHelper {
     }
 
 
+    /**
+     *
+     * @param url
+     * @return
+     */
     public static String startGetRequest(String url)
     {
         HttpClient httpClient = new DefaultHttpClient();
@@ -100,6 +111,11 @@ public class RequestManagerHelper {
 
     }
 
+    /**
+     *
+     * @param is
+     * @return
+     */
     private static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));

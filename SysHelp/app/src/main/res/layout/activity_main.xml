@@ -57,7 +57,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Ayuda"
-            android:onClick="onClickConsultarInc"
+            android:onClick="onClickAyuda"
             style="@style/ButtonStyle"
             android:layout_weight="0.07"
 

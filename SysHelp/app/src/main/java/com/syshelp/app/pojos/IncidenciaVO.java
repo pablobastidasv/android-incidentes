@@ -29,7 +29,6 @@ public class IncidenciaVO {
         this.fechaFin = fechaFin;
         this.descripcion = descripcion;
         this.responsable = responsable;
-
         this.estado = estado;
         this.numIncidencia = numIncidencia;
         this.categoria = categoria;

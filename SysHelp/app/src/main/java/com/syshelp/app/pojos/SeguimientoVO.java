@@ -1,7 +1,9 @@
 package com.syshelp.app.pojos;
 
+import java.util.ArrayList;
+
 /**
- * Created by mikillo on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class SeguimientoVO {
 
@@ -27,6 +29,7 @@ public class SeguimientoVO {
         this.categoria = categoria;
         this.prioridad = prioridad;
     }
+
 
     public String getSeguimientoId() {
         return seguimientoId;

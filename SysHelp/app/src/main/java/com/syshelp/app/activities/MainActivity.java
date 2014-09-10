@@ -51,4 +51,9 @@ public class MainActivity extends ActionBarActivity {
         this.startActivity(i);
     }
 
+    public void onClickAyuda (View view){
+
+        Intent i = new Intent(this, UserHelp.class);
+        this.startActivity(i);
+    }
 }

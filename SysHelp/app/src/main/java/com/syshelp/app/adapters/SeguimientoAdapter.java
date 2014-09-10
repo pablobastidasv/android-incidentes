@@ -17,54 +17,32 @@ import java.util.List;
  */
 public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
 
-    private List<SeguimientoVO> listItemsSeg;
+    private List<SeguimientoVO> listItems;
     private Context ctx;
 
-    /**
-     *
-     * @param infoSeg
-     * @param ctx
-     */
-    public SeguimientoAdapter(List<SeguimientoVO> infoSeg, Context ctx)
+    public SeguimientoAdapter(List<SeguimientoVO> users, Context ctx)
     {
-        super(ctx, R.layout.infolist_seg, infoSeg);
-        this.listItemsSeg = infoSeg;
+        super(ctx, R.layout.infolist_seg, users);
+        this.listItems = users;
         this.ctx = ctx;
     }
-
-
     public int getCount() {
-        if (listItemsSeg != null)
-            return listItemsSeg.size();
+        if (listItems != null)
+            return listItems.size();
         return 0;
     }
 
     public SeguimientoVO getItem(int position) {
-        if (listItemsSeg != null)
-            return listItemsSeg.get(position);
+        if (listItems != null)
+            return listItems.get(position);
         return null;
     }
 
     public long getItemId(int position) {
-        if (listItemsSeg != null)
-            return listItemsSeg.get(position).hashCode();
+        if (listItems != null)
+            return listItems.get(position).hashCode();
         return 0;
     }
-
-    public List<SeguimientoVO> getListItems() {
-        return listItemsSeg;
-    }
-    public void setListItems(List<SeguimientoVO> listItems) {
-        this.listItemsSeg = listItems;
-    }
-
-    /**
-     *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
-     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -74,12 +52,15 @@ public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
             v = inflater.inflate(R.layout.infolist_seg,parent,false);
         }
 
-        SeguimientoVO u = listItemsSeg.get(position);
+        SeguimientoVO u = listItems.get(position);
         return v;
 
 
     }
-
-
-
+    public List<SeguimientoVO> getListItems() {
+        return listItems;
+    }
+    public void setListItems(List<SeguimientoVO> listItems) {
+        this.listItems = listItems;
+    }
 }

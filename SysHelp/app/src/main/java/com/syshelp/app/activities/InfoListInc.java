@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +19,13 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
- * Created by Mitzy Valencia  on 24/08/2014.
+ * Created by Mitzy Valencia
  */
 public class InfoListInc extends Activity {
 
     private String message;
-
+    private SeguimientoVO seguimientoVO;
+    private SeguimientoAdapter adptSeg;
     /**
      *
      * @param savedInstanceState
@@ -33,16 +35,16 @@ public class InfoListInc extends Activity {
 
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.infolist_inc);
-        //adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), infoListSeg.getActivity());
+
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             message =  bundle.getString("numIncidencia");
         }
-
         String  url = "http://146.148.36.217:7004/incidencias/"+message;
-       // new ConsultarAsyncTask(infoListSeg.getActivity(),adptSeg);
-        new ConsultarAsyncTask(this).execute(url);
+         adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), this);
+        new ConsultarAsyncTask(this,adptSeg).execute(url);
         TextView numIncidencia = (TextView) this.findViewById(R.id.txtNumIncidencia);
         numIncidencia.setText(message);
     }
@@ -60,8 +62,13 @@ public class InfoListInc extends Activity {
     public void onClickVerSeguimientos (View view){
 
         try{
+
             Intent i = new Intent(this, InfoListSeg.class);
             this.startActivity(i);
+
+
+            //ListView lView = (ListView) findViewById(R.id.listInfoSeg);
+            //lView.setAdapter(adptSeg);
 
         }
         catch(Exception ex)

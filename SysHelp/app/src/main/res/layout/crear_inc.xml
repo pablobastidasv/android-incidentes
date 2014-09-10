@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Digite su número de documento"
                 android:inputType="number"
-                android:paddingTop="10px"/>
+                android:paddingTop="10px"
+                android:maxLength="45"/>
 
             <TextView
                 android:layout_width="fill_parent"
@@ -50,6 +51,7 @@
                 android:layout_gravity="right"
                 android:maxLength="300"
                 android:hint="Digite la descripción"
+
                 />
 
         </LinearLayout>
