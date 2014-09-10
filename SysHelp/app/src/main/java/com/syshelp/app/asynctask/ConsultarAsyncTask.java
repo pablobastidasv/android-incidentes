@@ -2,21 +2,15 @@ package com.syshelp.app.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syshelp.app.R;
 import com.syshelp.app.activities.ConsultarInc;
-import com.syshelp.app.activities.InfoListInc;
 import com.syshelp.app.activities.InfoListSeg;
-import com.syshelp.app.activities.MainActivity;
 import com.syshelp.app.adapters.SeguimientoAdapter;
 import com.syshelp.app.pojos.IncidenciaVO;
 import com.syshelp.app.pojos.SeguimientoVO;
@@ -27,7 +21,6 @@ import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Mitzy Valencia
@@ -108,9 +101,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
 
                     if (s.contains("segumiento")) {
-
-                        JSONArray jsonArray = new JSONArray(new JSONObject(s).getString("segumiento"));
-                        //ArrayList adapter = new ArrayList();
+                        JSONArray jsonArray = crearJsonArraySeguimientos(s);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -172,6 +163,17 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
         }
 
 
+    }
+
+    private JSONArray crearJsonArraySeguimientos(String s) throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject seguimientoObj = new JSONObject(new JSONObject(s).getString("segumiento"));
+        if(seguimientoObj == null){
+            jsonArray = new JSONArray(new JSONObject(s).getString("segumiento"));
+        }else{
+            jsonArray.put(seguimientoObj);
+        }
+        return jsonArray;
     }
 
 
