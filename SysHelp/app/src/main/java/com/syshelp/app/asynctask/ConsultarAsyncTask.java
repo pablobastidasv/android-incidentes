@@ -54,11 +54,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
         progressDialog.setMax(100);
     }
 
-//    public ConsultarAsyncTask(Activity ctx , SeguimientoAdapter adpt)
-//    {
-//        this.context2 = new WeakReference<Activity>(ctx);
-//        this.adptSeg = adpt;
-//    }
+
 
 
     @Override
@@ -130,10 +126,17 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
                             adptSeg.add(seguimientoVO);
 
                         }
-                        // adptSeg.setListItems(seg);
-                        // adptSeg.notifyDataSetChanged();
+                         adptSeg.setListItems(seg);
+                         adptSeg.notifyDataSetChanged();
 
 
+                    }else{
+                        adptSeg = null;
+                        TextView title = (TextView) context2.get().findViewById(R.id.lblSeguimiento);
+                        title.setText("!Lo sentimos!...");
+                        TextView desc = (TextView) context2.get().findViewById(R.id.txtDescSeg);
+                        desc.setText("La incidencia no registra seguimientos. " +
+                                "Por favor ponte en contacto para mayor información.");
                     }
 //                     else {
 //

@@ -67,6 +67,7 @@ public class InfoListInc extends Activity {
             this.startActivity(i);
 
 
+
             //ListView lView = (ListView) findViewById(R.id.listInfoSeg);
             //lView.setAdapter(adptSeg);
 

@@ -44,17 +44,7 @@ public class InfoListSeg extends Activity {
 
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.infolist_seg);
-        if (adptSeg.isEmpty()){
-            TextView title = (TextView) this.findViewById(R.id.lblSeguimiento);
-            title.setText("!Lo sentimos!...");
-            TextView desc = (TextView) this.findViewById(R.id.txtDescSeg);
-            desc.setText("La incidencia no registra seguimientos. " +
-                    "Por favor ponte en contacto para mayor información.");
-        }else{
-            ListView lView = (ListView) findViewById(R.id.listInfoSeg);
-            lView.setAdapter(adptSeg);
 
-        }
         //adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), this);
 
 //       if(!adptSeg.isEmpty()){
