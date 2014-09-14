@@ -40,6 +40,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
     public ConsultarAsyncTask(Activity ctx, SeguimientoAdapter adpt) {
         this.context1 = new WeakReference<Activity>(ctx);
+        this.context2 = new WeakReference<Activity>(ctx);
         this.adptSeg = adpt;
         progressDialog = new ProgressDialog(context1.get());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -74,7 +75,6 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
                 JSONObject jsonObject = new JSONObject(s);
                 IncidenciaVO infolist = new IncidenciaVO();
-                SeguimientoVO seguimientoVO = new SeguimientoVO();
                 ArrayList<SeguimientoVO> seg = new ArrayList<SeguimientoVO>();
 
                 if (s != null) {
@@ -88,25 +88,27 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
                     // Datos de Incidencia
                     TextView categoria = (TextView) context1.get().findViewById(R.id.txtCategoria);
-                    categoria.setText(infolist.getCategoria());
-                    TextView asesor = (TextView) context1.get().findViewById(R.id.txtAsesor);
-                    asesor.setText(infolist.getResponsable());
-                    TextView estado = (TextView) context1.get().findViewById(R.id.txtEstado);
-                    estado.setText(infolist.getEstado());
-                    TextView prioridad = (TextView) context1.get().findViewById(R.id.txtPrioridad);
-                    prioridad.setText(infolist.getPrioridad());
-                    TextView fecha = (TextView) context1.get().findViewById(R.id.txtFecha);
-                    fecha.setText(infolist.getFechaIni());
-                    TextView descripcion = (TextView) context1.get().findViewById(R.id.txtdescripcion);
-                    descripcion.setText(infolist.getDescripcion());
-
+                    if(categoria != null) {
+                        categoria.setText(infolist.getCategoria());
+                        TextView asesor = (TextView) context1.get().findViewById(R.id.txtAsesor);
+                        asesor.setText(infolist.getResponsable());
+                        TextView estado = (TextView) context1.get().findViewById(R.id.txtEstado);
+                        estado.setText(infolist.getEstado());
+                        TextView prioridad = (TextView) context1.get().findViewById(R.id.txtPrioridad);
+                        prioridad.setText(infolist.getPrioridad());
+                        TextView fecha = (TextView) context1.get().findViewById(R.id.txtFecha);
+                        fecha.setText(infolist.getFechaIni());
+                        TextView descripcion = (TextView) context1.get().findViewById(R.id.txtdescripcion);
+                        descripcion.setText(infolist.getDescripcion());
+                    }
 
                     if (s.contains("segumiento")) {
                         JSONArray jsonArray = crearJsonArraySeguimientos(s);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
-
                             JSONObject jsonObjectSeg = (JSONObject) jsonArray.get(i);
+
+                            SeguimientoVO seguimientoVO = new SeguimientoVO();
                             seguimientoVO.setFecha(jsonObjectSeg.getString("fecha"));
                             seguimientoVO.setCategoria(jsonObjectSeg.getString("categoriaNombre"));
                             seguimientoVO.setResponsable(jsonObjectSeg.getString("asesor"));
@@ -125,10 +127,12 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
                     }else{
                         adptSeg = null;
                         TextView title = (TextView) context2.get().findViewById(R.id.lblSeguimiento);
-                        title.setText("!Lo sentimos!...");
-                        TextView desc = (TextView) context2.get().findViewById(R.id.txtDescSeg);
-                        desc.setText("La incidencia no registra seguimientos. " +
-                                "Por favor ponte en contacto para mayor información.");
+                        if(title != null) {
+                            title.setText("!Lo sentimos!...");
+                            TextView desc = (TextView) context2.get().findViewById(R.id.txtDescSeg);
+                            desc.setText("La incidencia no registra seguimientos. " +
+                                    "Por favor ponte en contacto para mayor información.");
+                        }
                     }
 //                     else {
 //

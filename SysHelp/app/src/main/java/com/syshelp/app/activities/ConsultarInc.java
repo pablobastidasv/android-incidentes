@@ -10,8 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.syshelp.app.R;
+import com.syshelp.app.adapters.SeguimientoAdapter;
+import com.syshelp.app.pojos.SeguimientoVO;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 /**
  * Created by Mitzy Valencia

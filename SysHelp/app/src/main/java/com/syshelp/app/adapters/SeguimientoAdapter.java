@@ -20,39 +20,52 @@ public class SeguimientoAdapter extends ArrayAdapter<SeguimientoVO> {
     private List<SeguimientoVO> listItems;
     private Context ctx;
 
-    public SeguimientoAdapter(List<SeguimientoVO> users, Context ctx)
+    public SeguimientoAdapter(List<SeguimientoVO> seguimientoVOList, Context ctx)
     {
-        super(ctx, R.layout.infolist_seg, users);
-        this.listItems = users;
+        super(ctx, R.layout.seguimiento_item, seguimientoVOList);
+        this.listItems = seguimientoVOList;
         this.ctx = ctx;
     }
     public int getCount() {
         if (listItems != null)
             return listItems.size();
-        return 0;
+        else
+            return 0;
     }
 
     public SeguimientoVO getItem(int position) {
         if (listItems != null)
             return listItems.get(position);
-        return null;
+        else
+            return null;
     }
 
     public long getItemId(int position) {
         if (listItems != null)
             return listItems.get(position).hashCode();
-        return 0;
+        else
+            return 0;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View v = convertView;
-        if (v == null) {
-            LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.infolist_seg,parent,false);
-        }
+        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.seguimiento_item,parent,false);
 
         SeguimientoVO u = listItems.get(position);
+
+        TextView txtFechaDll = (TextView) v.findViewById(R.id.txtFechaDll);
+        TextView txtAsesorDll = (TextView) v.findViewById(R.id.txtAsesorDll);
+        TextView txtEstadoDll = (TextView) v.findViewById(R.id.txtEstadoDll);
+        TextView txtPrioridadDll = (TextView) v.findViewById(R.id.txtPrioridadDll);
+        TextView txtObservacionDll = (TextView) v.findViewById(R.id.txtObervacionDll);
+
+        txtFechaDll.setText(u.getFecha().substring(0,10));
+        txtAsesorDll.setText(u.getResponsable());
+        txtEstadoDll.setText(u.getEstado());
+        txtPrioridadDll.setText(u.getPrioridad());
+        txtObservacionDll.setText(u.getDescripcion());
+
         return v;
 
 
