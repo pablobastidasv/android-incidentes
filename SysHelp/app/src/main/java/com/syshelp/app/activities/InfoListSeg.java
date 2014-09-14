@@ -27,9 +27,8 @@ import java.util.ArrayList;
  */
 public class InfoListSeg extends Activity {
 
-
-    private Context ctx;
     private SeguimientoAdapter adptSeg;
+    private String numIncidencia;
 
 
     @Override
@@ -45,11 +44,20 @@ public class InfoListSeg extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.infolist_seg);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            numIncidencia =  bundle.getString("numIncidencia");
+        }
+        String  url = "http://146.148.36.217:7004/incidencias/"+numIncidencia;
+        adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), this);
+        new ConsultarAsyncTask(this,adptSeg).execute(url);
+
         //adptSeg  = new SeguimientoAdapter(new ArrayList<SeguimientoVO>(), this);
 
 //       if(!adptSeg.isEmpty()){
-//             ListView lView = (ListView) findViewById(R.id.listInfoSeg);
-//            lView.setAdapter(adptSeg);
+        ListView lView = (ListView) findViewById(R.id.listInfoSeg);
+        lView.setAdapter(adptSeg);
 //            lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
 //                @Override

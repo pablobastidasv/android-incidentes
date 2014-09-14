@@ -2,21 +2,15 @@ package com.syshelp.app.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syshelp.app.R;
 import com.syshelp.app.activities.ConsultarInc;
-import com.syshelp.app.activities.InfoListInc;
 import com.syshelp.app.activities.InfoListSeg;
-import com.syshelp.app.activities.MainActivity;
 import com.syshelp.app.adapters.SeguimientoAdapter;
 import com.syshelp.app.pojos.IncidenciaVO;
 import com.syshelp.app.pojos.SeguimientoVO;
@@ -24,10 +18,10 @@ import com.syshelp.app.pojos.SeguimientoVO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Mitzy Valencia
@@ -46,6 +40,7 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
     public ConsultarAsyncTask(Activity ctx, SeguimientoAdapter adpt) {
         this.context1 = new WeakReference<Activity>(ctx);
+        this.context2 = new WeakReference<Activity>(ctx);
         this.adptSeg = adpt;
         progressDialog = new ProgressDialog(context1.get());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -80,7 +75,6 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
                 JSONObject jsonObject = new JSONObject(s);
                 IncidenciaVO infolist = new IncidenciaVO();
-                SeguimientoVO seguimientoVO = new SeguimientoVO();
                 ArrayList<SeguimientoVO> seg = new ArrayList<SeguimientoVO>();
 
                 if (s != null) {
@@ -94,27 +88,27 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
 
                     // Datos de Incidencia
                     TextView categoria = (TextView) context1.get().findViewById(R.id.txtCategoria);
-                    categoria.setText(infolist.getCategoria());
-                    TextView asesor = (TextView) context1.get().findViewById(R.id.txtAsesor);
-                    asesor.setText(infolist.getResponsable());
-                    TextView estado = (TextView) context1.get().findViewById(R.id.txtEstado);
-                    estado.setText(infolist.getEstado());
-                    TextView prioridad = (TextView) context1.get().findViewById(R.id.txtPrioridad);
-                    prioridad.setText(infolist.getPrioridad());
-                    TextView fecha = (TextView) context1.get().findViewById(R.id.txtFecha);
-                    fecha.setText(infolist.getFechaIni());
-                    TextView descripcion = (TextView) context1.get().findViewById(R.id.txtdescripcion);
-                    descripcion.setText(infolist.getDescripcion());
-
+                    if(categoria != null) {
+                        categoria.setText(infolist.getCategoria());
+                        TextView asesor = (TextView) context1.get().findViewById(R.id.txtAsesor);
+                        asesor.setText(infolist.getResponsable());
+                        TextView estado = (TextView) context1.get().findViewById(R.id.txtEstado);
+                        estado.setText(infolist.getEstado());
+                        TextView prioridad = (TextView) context1.get().findViewById(R.id.txtPrioridad);
+                        prioridad.setText(infolist.getPrioridad());
+                        TextView fecha = (TextView) context1.get().findViewById(R.id.txtFecha);
+                        fecha.setText(infolist.getFechaIni());
+                        TextView descripcion = (TextView) context1.get().findViewById(R.id.txtdescripcion);
+                        descripcion.setText(infolist.getDescripcion());
+                    }
 
                     if (s.contains("segumiento")) {
-
-                        JSONArray jsonArray = new JSONArray(new JSONObject(s).getString("segumiento"));
-                        //ArrayList adapter = new ArrayList();
+                        JSONArray jsonArray = crearJsonArraySeguimientos(s);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
-
                             JSONObject jsonObjectSeg = (JSONObject) jsonArray.get(i);
+
+                            SeguimientoVO seguimientoVO = new SeguimientoVO();
                             seguimientoVO.setFecha(jsonObjectSeg.getString("fecha"));
                             seguimientoVO.setCategoria(jsonObjectSeg.getString("categoriaNombre"));
                             seguimientoVO.setResponsable(jsonObjectSeg.getString("asesor"));
@@ -133,10 +127,12 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
                     }else{
                         adptSeg = null;
                         TextView title = (TextView) context2.get().findViewById(R.id.lblSeguimiento);
-                        title.setText("!Lo sentimos!...");
-                        TextView desc = (TextView) context2.get().findViewById(R.id.txtDescSeg);
-                        desc.setText("La incidencia no registra seguimientos. " +
-                                "Por favor ponte en contacto para mayor información.");
+                        if(title != null) {
+                            title.setText("!Lo sentimos!...");
+                            TextView desc = (TextView) context2.get().findViewById(R.id.txtDescSeg);
+                            desc.setText("La incidencia no registra seguimientos. " +
+                                    "Por favor ponte en contacto para mayor información.");
+                        }
                     }
 //                     else {
 //
@@ -172,6 +168,21 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
         }
 
 
+    }
+
+    private JSONArray crearJsonArraySeguimientos(String s) throws JSONException {
+        String seguimientosStr = new JSONObject(s).getString("segumiento");
+
+        Object token = new JSONTokener(seguimientosStr).nextValue();
+
+        JSONArray seguimientos = new JSONArray();
+        if(token instanceof JSONObject) {
+            seguimientos.put(token);
+        } else if(token instanceof JSONArray){
+            seguimientos = (JSONArray) token;
+        }
+
+        return seguimientos;
     }
 
 

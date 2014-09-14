@@ -2,8 +2,10 @@
 /local.properties
 .DS_Store
 
-*.iml
-.idea/
+**/*.iml
+**/.idea/
 
 SysHelp/.idea
 SysHelp/build/
+
+**/*.apk

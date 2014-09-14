@@ -64,6 +64,7 @@ public class InfoListInc extends Activity {
         try{
 
             Intent i = new Intent(this, InfoListSeg.class);
+            i.putExtra("numIncidencia", message);
             this.startActivity(i);
 
 

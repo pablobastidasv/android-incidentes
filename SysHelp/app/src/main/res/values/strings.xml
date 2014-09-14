@@ -4,5 +4,10 @@
     <string name="app_name">SysHelp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="fecha_dll">Fecha:</string>
+    <string name="asesor_dll">Asesor</string>
+    <string name="lblEstadoDll">Estado:</string>
+    <string name="lblPrioridad">Prioridad:</string>
+    <string name="lblObservacion">Observación:</string>
 
 </resources>

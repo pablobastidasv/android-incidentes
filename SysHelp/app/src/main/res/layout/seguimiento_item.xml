@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/seguimiento_item">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/search_small"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha_dll"
+            android:id="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:id="@+id/txtFechaDll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/asesor_dll"
+            android:layout_alignEnd="@+id/txtFechaDll"
+            android:id="@+id/textView2"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_below="@+id/txtFechaDll"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:id="@+id/txtAsesorDll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/txtFechaDll"
+            android:layout_alignEnd="@+id/txtFechaDll"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lblEstadoDll"
+            android:id="@+id/textView3"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtAsesorDll"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtEstadoDll"
+            android:layout_alignStart="@+id/txtAsesorDll"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lblPrioridad"
+            android:id="@+id/textView4"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtEstadoDll"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtPrioridadDll"
+            android:layout_alignStart="@+id/txtEstadoDll"
+            android:layout_alignEnd="@+id/txtEstadoDll"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lblObservacion"
+            android:id="@+id/textView5"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtPrioridadDll"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtObervacionDll"
+            android:layout_alignStart="@+id/txtPrioridadDll"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"/>
+
+</RelativeLayout>
