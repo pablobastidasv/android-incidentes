@@ -3,14 +3,11 @@ package com.syshelp.app.asynctask;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syshelp.app.R;
-import com.syshelp.app.activities.CrearInc;
-import com.syshelp.app.activities.MainActivity;
 import com.syshelp.app.pojos.IncidenciaVO;
 
 import org.apache.http.message.BasicNameValuePair;

@@ -3,24 +3,12 @@ package com.syshelp.app.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.syshelp.app.R;
 import com.syshelp.app.adapters.SeguimientoAdapter;
-import com.syshelp.app.asynctask.ConsultarAsyncTask;
-import com.syshelp.app.pojos.SeguimientoVO;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 
 /**
  * Created by Mitzy Valencia

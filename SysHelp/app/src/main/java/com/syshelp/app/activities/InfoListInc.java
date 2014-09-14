@@ -4,18 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syshelp.app.R;
 import com.syshelp.app.adapters.SeguimientoAdapter;
 import com.syshelp.app.asynctask.ConsultarAsyncTask;
-import com.syshelp.app.pojos.IncidenciaVO;
 import com.syshelp.app.pojos.SeguimientoVO;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**

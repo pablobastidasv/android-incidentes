@@ -1,7 +1,5 @@
 package com.syshelp.app.pojos;
 
-import java.util.ArrayList;
-
 /**
  * Created by Mitzy Valencia
  */
