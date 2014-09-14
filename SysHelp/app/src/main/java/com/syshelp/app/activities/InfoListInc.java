@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class InfoListInc extends Activity {
 
     private String message;
-    private SeguimientoVO seguimientoVO;
+    //private SeguimientoVO seguimientoVO;
     private SeguimientoAdapter adptSeg;
     /**
      *
