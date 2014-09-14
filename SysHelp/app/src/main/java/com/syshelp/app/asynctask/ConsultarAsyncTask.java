@@ -18,6 +18,7 @@ import com.syshelp.app.pojos.SeguimientoVO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -166,14 +167,18 @@ public class ConsultarAsyncTask extends AsyncTask<String,String, String> {
     }
 
     private JSONArray crearJsonArraySeguimientos(String s) throws JSONException {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject seguimientoObj = new JSONObject(new JSONObject(s).getString("segumiento"));
-        if(seguimientoObj == null){
-            jsonArray = new JSONArray(new JSONObject(s).getString("segumiento"));
-        }else{
-            jsonArray.put(seguimientoObj);
+        String seguimientosStr = new JSONObject(s).getString("segumiento");
+
+        Object token = new JSONTokener(seguimientosStr).nextValue();
+
+        JSONArray seguimientos = new JSONArray();
+        if(token instanceof JSONObject) {
+            seguimientos.put(token);
+        } else if(token instanceof JSONArray){
+            seguimientos = (JSONArray) token;
         }
-        return jsonArray;
+
+        return seguimientos;
     }
 
 
